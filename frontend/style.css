@@ -1,0 +1,28 @@
+body {
+    font-family: Arial;
+    padding: 20px;
+}
+
+textarea {
+    width: 300px;
+    height: 80px;
+}
+
+button {
+    padding: 10px;
+    background: green;
+    color: white;
+}
+
+#toggleBtn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#toggleBtn:hover {
+    background-color: #555;
+}

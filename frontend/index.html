@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Auditor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Upload Expense</h2>
+
+<form id="uploadForm">
+    
+    <label><b>Upload Receipt:</b></label><br>
+    <input type="file" name="file" required><br><br>
+
+    <label><b>Business Purpose:</b></label><br>
+    <textarea name="purpose" placeholder="e.g. Client meeting"></textarea><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<h3>Result</h3>
+<pre id="result"></pre>
+
+<h3>All Claims</h3>
+<button id="toggleBtn" onclick="toggleClaims()">Show Claims</button>
+<ul id="claims"></ul>
+
+<script src="script.js"></script>
+
+</body>
+</html>
