@@ -18,7 +18,7 @@
 ### Backend
 cd backend
 pip install -r requirements.txt
-uvicorn app:app --reload
+python -m uvicorn app:app --reload
 
 ### Frontend
 Open index.html in browser
