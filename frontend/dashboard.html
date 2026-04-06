@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Finance Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Finance Auditor Dashboard</h2>
+
+<table border="1" id="claimsTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Company</th>
+            <th>Merchant</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Explanation</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+async function loadClaims() {
+    const res = await fetch("http://127.0.0.1:8000/claims");
+    const data = await res.json();
+
+    const table = document.querySelector("#claimsTable tbody");
+    table.innerHTML = "";
+
+    data.forEach(claim => {
+        const row = document.createElement("tr");
+
+        let color = "black";
+        if (claim[7] === "Approved") color = "green";
+        if (claim[7] === "Rejected") color = "red";
+        if (claim[7] === "Flagged") color = "orange";
+
+        row.innerHTML = `
+            <td>${claim[0]}</td>
+            <td>${claim[1]}</td>
+            <td>${claim[2]}</td>
+            <td>₹${claim[4]}</td>
+            <td style="color:${color}; font-weight:bold;">${claim[7]}</td>
+            <td>${claim[8]}</td>
+        `;
+
+        table.appendChild(row);
+    });
+}
+
+loadClaims();
+</script>
+
+<br><br>
+<a href="index.html">← Back to Upload</a>
+
+</body>
+</html>

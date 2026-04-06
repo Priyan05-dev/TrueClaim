@@ -1,3 +1,5 @@
+let visible = false;
+
 const form = document.getElementById("uploadForm");
 
 form.addEventListener("submit", async (e) => {
@@ -5,75 +7,44 @@ form.addEventListener("submit", async (e) => {
 
     const formData = new FormData(form);
 
-    try {
-        const res = await fetch("http://127.0.0.1:8000/upload", {
-            method: "POST",
-            body: formData
-        });
+    const res = await fetch("http://127.0.0.1:8000/upload", {
+        method: "POST",
+        body: formData
+    });
 
-        const data = await res.json();
+    const data = await res.json();
 
-        let color = "black";
+    let color = "black";
 
-        if (data.status === "Approved") {
-            color = "green";
-        } else if (data.status === "Rejected") {
-            color = "red";
-        } else if (data.status === "Flagged") {
-            color = "orange";
-        }
+    if (data.status === "Approved") color = "green";
+    else if (data.status === "Rejected") color = "red";
+    else if (data.status === "Flagged") color = "orange";
 
-        document.getElementById("result").innerHTML =
-            `<span style="color:${color}; font-weight:bold;">
-                Status: ${data.status}
-            </span><br>
-            Explanation: ${data.explanation}`;
-    } catch (error) {
-        console.error("Error:", error);
-    }
+    document.getElementById("result").innerHTML =
+        `<span style="color:${color}; font-weight:bold;">
+            Status: ${data.status}
+         </span><br>
+         Explanation: ${data.explanation}`;
 });
-
-async function loadClaims() {
-    try {
-        const res = await fetch("http://127.0.0.1:8000/claims");
-        const data = await res.json();
-
-        const list = document.getElementById("claims");
-        list.innerHTML = "";
-
-        data.forEach(claim => {
-            const li = document.createElement("li");
-            li.innerText = `₹${claim[3]} - ${claim[6]} (${claim[7]})`;
-            list.appendChild(li);
-        });
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 async function toggleClaims() {
     const list = document.getElementById("claims");
     const button = document.getElementById("toggleBtn");
 
     if (!visible) {
-        try {
-            const res = await fetch("http://127.0.0.1:8000/claims");
-            const data = await res.json();
+        const res = await fetch("http://127.0.0.1:8000/claims");
+        const data = await res.json();
 
-            list.innerHTML = "";
+        list.innerHTML = "";
 
-            data.forEach(claim => {
-                const li = document.createElement("li");
-                li.innerText = `₹${claim[3]} - ${claim[6]} (${claim[7]})`;
-                list.appendChild(li);
-            });
+        data.forEach(claim => {
+            const li = document.createElement("li");
+            li.innerText = `₹${claim[4]} - ${claim[7]} (${claim[8]})`;
+            list.appendChild(li);
+        });
 
-            button.innerText = "Hide Claims";
-            visible = true;
-
-        } catch (error) {
-            console.error(error);
-        }
+        button.innerText = "Hide Claims";
+        visible = true;
     } else {
         list.innerHTML = "";
         button.innerText = "Show Claims";

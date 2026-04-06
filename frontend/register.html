@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Register</h2>
+
+<form id="registerForm">
+    <input type="text" name="username" placeholder="Username"><br><br>
+    <input type="password" name="password" placeholder="Password"><br><br>
+    <select name="role">
+        <option value="company">Company</option>
+        <option value="employee">Employee</option>
+    </select><br><br>
+    <input type="text" name="company_id" placeholder="Company ID"><br><br>
+    <button type="submit">Register</button>
+</form>
+
+<script>
+document.getElementById("registerForm").onsubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    await fetch("http://127.0.0.1:8000/register", {
+        method: "POST",
+        body: formData
+    });
+
+    alert("Registered!");
+    window.location.href = "login.html";
+};
+</script>
+
+</body>
+</html>

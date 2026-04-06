@@ -6,25 +6,23 @@
 </head>
 <body>
 
-<h2>Upload Expense</h2>
+<h2>Expense Auditor Portal</h2>
 
 <form id="uploadForm">
-    
-    <label><b>Upload Receipt:</b></label><br>
+    <input type="text" name="company_id" placeholder="Company ID" required><br><br>
     <input type="file" name="file" required><br><br>
-
-    <label><b>Business Purpose:</b></label><br>
-    <textarea name="purpose" placeholder="e.g. Client meeting"></textarea><br><br>
-
+    <textarea name="purpose" placeholder="Business Purpose"></textarea><br><br>
     <button type="submit">Submit</button>
 </form>
 
 <h3>Result</h3>
-<pre id="result"></pre>
+<div id="result"></div>
 
-<h3>All Claims</h3>
 <button id="toggleBtn" onclick="toggleClaims()">Show Claims</button>
 <ul id="claims"></ul>
+
+<br><br>
+<a href="dashboard.html">Go to Dashboard →</a>
 
 <script src="script.js"></script>
 
