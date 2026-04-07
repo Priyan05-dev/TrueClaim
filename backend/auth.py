@@ -1,7 +1,11 @@
 import sqlite3
+import os
+
+DB_PATH = os.path.join(os.path.dirname(__file__), "claims.db")
+
 
 def create_users_table():
-    conn = sqlite3.connect("claims.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -19,7 +23,7 @@ def create_users_table():
 
 
 def register_user(username, password, role, company_id):
-    conn = sqlite3.connect("claims.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -32,7 +36,7 @@ def register_user(username, password, role, company_id):
 
 
 def login_user(username, password):
-    conn = sqlite3.connect("claims.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""

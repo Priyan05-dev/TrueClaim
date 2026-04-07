@@ -1,30 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Expense Auditor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Policy-First Expense Auditor — AI-powered expense claim management with automated policy compliance checking.">
+    <title>TrueClaim — Policy-First Intelligence</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo/TrueClaim_logo_1.png">
 </head>
+
 <body>
 
-<h2>Expense Auditor Portal</h2>
+    <!-- ══════════════ HEADER ══════════════ -->
+    <header class="app-header" id="appHeader" style="display:none;">
+        <div class="logo" onclick="navigate(currentUser?.role === 'company' ? 'dashboard' : 'employee')">
+            <img src="logo/TrueClaim_logo_1.png" alt="Logo" style="height: 75px;">
+            <span>TrueClaim</span>
+        </div>
 
-<form id="uploadForm">
-    <input type="text" name="company_id" placeholder="Company ID" required><br><br>
-    <input type="file" name="file" required><br><br>
-    <textarea name="purpose" placeholder="Business Purpose"></textarea><br><br>
-    <button type="submit">Submit</button>
-</form>
+        <nav>
+            <ul class="nav-links" id="navLinks"></ul>
+        </nav>
 
-<h3>Result</h3>
-<div id="result"></div>
+        <div class="header-actions">
+            <div class="user-badge" id="userBadge">
+                <div class="avatar" id="userAvatar"></div>
+                <span id="userName"></span>
+                <span class="role-tag" id="userRole"></span>
+            </div>
+            <button class="notif-bell" id="notifBell" onclick="toggleNotifPanel()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span class="notif-badge" id="notifBadge"></span>
+            </button>
+            <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+    </header>
 
-<button id="toggleBtn" onclick="toggleClaims()">Show Claims</button>
-<ul id="claims"></ul>
+    <!-- ══════════════ MAIN CONTENT ══════════════ -->
+    <main class="main-content" id="mainContent"></main>
 
-<br><br>
-<a href="dashboard.html">Go to Dashboard →</a>
+    <!-- ══════════════ NOTIFICATION PANEL ══════════════ -->
+    <div class="notif-overlay" id="notifOverlay" onclick="toggleNotifPanel()"></div>
+    <aside class="notif-panel" id="notifPanel">
+        <div class="notif-panel-header">
+            <h3>Notifications</h3>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <button class="link-text" onclick="markAllRead()">Mark all read</button>
+                <button class="notif-panel-close" onclick="toggleNotifPanel()">✕</button>
+            </div>
+        </div>
+        <div class="notif-list" id="notifList"></div>
+    </aside>
 
-<script src="script.js"></script>
+    <!-- ══════════════ TOAST CONTAINER ══════════════ -->
+    <div class="toast-container" id="toastContainer"></div>
 
+    <script src="script.js"></script>
 </body>
+
 </html>
