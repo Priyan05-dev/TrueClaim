@@ -1,0 +1,9 @@
+frontend/
+sample_receipts/
+.git/
+__pycache__/
+*.pyc
+claims.db
+uploads/*
+policies/*
+.env
