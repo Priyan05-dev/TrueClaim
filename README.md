@@ -48,8 +48,8 @@ TrueClaim automates the entire expense audit pipeline using OCR and rule-based p
 ### Step 1 — Clone the Repository
 
 ```bash
-git clone https://github.com/Priyan05-dev/expense-auditor.git
-cd expense-auditor
+git clone https://github.com/Priyan05-dev/TrueClaim.git
+cd TrueClaim
 ```
 
 ### Step 2 — Install Python Dependencies
@@ -104,7 +104,7 @@ python -m http.server 5500
 ## Project Structure
 
 ```
-expense-auditor/
+TrueClaim/
 ├── backend/
 │   ├── app.py              # FastAPI application & API routes
 │   ├── auth.py             # User registration & login
